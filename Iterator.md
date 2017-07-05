@@ -102,10 +102,6 @@ i.forEachRemaining(t -> System.out.println(t));
 
 ----------
 
-
-----------
-
-
 [^1]:https://en.wikipedia.org/wiki/Iterator_pattern#JavaIterator
 
 [^2]:http://idsg.tistory.com/8
