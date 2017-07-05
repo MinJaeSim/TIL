@@ -26,12 +26,86 @@ class Cursor {
     public static Cursor getInstance() {
         return INSTANCE;
     }
+
 }
 
-**이 방법의 문제점** 
-1. 특수한 경우에 객체가 생성될 수 있다. ex) Reflection, serialization(마샬링이라고도 부른다)
-2. Cursor.class 를 JVM에 로딩할 때 정적 객체가 생성됨으로 프로그램 시작에 악영향을 미칠 수 있다.
+##### **Eager Initialization 기법의 문제점** 
+###### 1. 특수한 경우에 객체가 생성될 수 있다. ex) Reflection, serialization(마샬링이라고도 부른다)
 
+class Cursor implements Serializable {
+
+  	private Cursor() {
+  	}
+ 
+  	private Object readResolve() {
+    	return INSTANCE;
+  	}
+ 
+  	private static final Cursor INSTANCE = new Cursor();
+
+  	public static Cursor getInstance() {
+    	return INSTANCE;
+  	}
+
+}[^2]
+
+###### 2. Cursor.class 를 JVM에 로딩할 때 정적 객체가 생성됨으로 프로그램 시작에 악영향을 미칠 수 있다.
+
+##### 문제점 1 해결책 : Enum SingleTon
+Reflection을 통해 생성하는 것이 불가능 하고, Serialization에 의한 객체 생성되 자동적으로 처리해준다.
+
+enum Cursor {
+
+    INSTANCE;
+
+    public static Cursor getInstance() {
+    	return INSTANCE;
+    }
+
+}
+
+## Lazy Initialization
+Eager Initialization 방식으로 구현된 SingleTon은 INSTANCE가 static final로 선언 되어 있다. 하지만 static final로 변수를 선언하면 INSTANCE는 프로그램이 시작할 때 생성되고, 프로그램이 종료될 때 파괴된다. 만약 프로그램에서 INSTANCE가 사용되지 않는다면, 프로그램의 초기비용만 높아지고 괜한 자원만 소비된것이다. 아를 해결하기 위해 실제 필요할때 객체를 생성하는 Lazy Initialization 기법이 있다.[^3] 
+
+class Cursor {
+
+    private static Cursor sInstance;
+    private Cursor() {}
+    public static Cursor getInstance() {
+        if (sInstance == null) {
+            sInstance = new Cursor();
+        }
+
+        return sInstance;
+    }
+
+}
+
+##### **Lazy Initialization 기법의 문제점** 
+Multi Thread 환경에서 Thread Safety 가 없다.
+
+해결책?? Synchronized Method
+	
+	public synchronized static Cursor getInstance() {
+    
+    if (sInstance == null) {
+        sInstance = new Cursor();
+    }
+
+    return sInstance;
+
+}
+
+*그러나 위의 방법은 getInstance 메소드를 호출 할때마다 동기화를 하기 때문에 **성능에 악영향**을 미친다.*
+
+## DCLP(Double Check Locking Pattern)
+
+## IODH(Initialization On Demand Holder)
 
 ----------
+
 [^1]:http://jellyms.kr/192
+
+[^2]:http://dev-ahn.tistory.com/119
+
+[^3]:http://cleancodes.tistory.com/14
