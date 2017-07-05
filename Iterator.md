@@ -21,10 +21,10 @@ Iterator는 Enumeration을 더 쉽게 사용하기 위해 만든 것으로 Enume
 ----------
 
 # Iterator Pattern
-Pattern은 Iterator를 사용하여 집합 객체 내부의 기본 표현을 노출시키지 않으면서 집합 객체의 요소에 순차적으로 액세스 할 수있는 방법을 제공하는 것이다.[^1]  
-이 패턴의 장점은 집합 객체의 코드가 변경되어도 순회하는 코드에 영향이 없는것이다.  또한 하나의 집합객체에 여러가지 순회방법을 정의할 수 있는데,  즉,  List로 구현하든 Vector로 구현하든 집합객체를 순회하는 코드에는 영향이 없다고 볼 수 있다.[^2]
+Pattern은 Iterator를 사용하여 집합 객체 내부의 기본 표현을 노출시키지 않으면서 집합 객체의 요소에 순차적으로 액세스 할 수있는 방법을 제공하는 것이다. [^1]  
+이 패턴의 장점은 집합 객체의 코드가 변경되어도 순회하는 코드에 영향이 없는것이다.  또한 하나의 집합객체에 여러가지 순회방법을 정의할 수 있는데,  즉,  List로 구현하든 Vector로 구현하든 집합객체를 순회하는 코드에는 영향이 없다고 볼 수 있다. [^2]
 
-![패턴 구조](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Iterator_UML_class_diagram.svg/1000px-Iterator_UML_class_diagram.svg.png)[^1]
+![패턴 구조](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Iterator_UML_class_diagram.svg/1000px-Iterator_UML_class_diagram.svg.png) [^1]
 
 이름 | 역할
 ---|---
