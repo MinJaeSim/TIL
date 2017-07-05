@@ -18,11 +18,11 @@
 가장 보편적이면서 많이 쓰이는 방법이다. 생성자에 private을 명시하여서 new 키워드를 사용할 수 없게 하여서 다른 클래스에서 Cursor instance = new Cursor(); 방법을 통해 인스턴스를 생성할 수 없게 한다. 다른 클래스에서 Cursor 클래스를 참조하려면 getInstance() 메소드를 사용하는 방법 밖에 없다.
 
 class Cursor {
+   
     private static final Cursor INSTANCE = new Cursor();
     private Cursor() {
         System.out.println("...");
     }
-
     public static Cursor getInstance() {
         return INSTANCE;
     }
@@ -34,4 +34,4 @@ class Cursor {
 
 
 ----------
-[^1]:http://jellyms kr/192
+[^1]:http://jellyms.kr/192
