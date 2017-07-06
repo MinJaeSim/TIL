@@ -94,13 +94,48 @@ Multi Thread 환경에서 Thread Safety 가 없다.
 
     return sInstance;
 
-}
+  }
 
 *그러나 위의 방법은 getInstance 메소드를 호출 할때마다 동기화를 하기 때문에 **성능에 악영향**을 미친다.*
 
 ## DCLP(Double Check Locking Pattern)
 
+public static Cursor getInstance() {
+    
+  if (sInstance == null) {
+    synchronized (Cursor.class) {
+      if (sInstance == null) {
+        sInstance = new Cursor();
+      }
+    }
+  }
+
+  return sInstance;
+  
+}
+
+객체를 생성하는 코드에만 LOCK을 걸었다.
+-> 문제점 : 코드가 선언적이지 않다. 가독성이 떨어진다.
+
 ## IODH(Initialization On Demand Holder)
+- JLS(Java Language Spec)
+- 내부 정적 클래스의 객체는 .class가 로딩되는 시점에 생성되지 않는다.
+
+class Cursor {
+
+  private Cursor() {
+    System.out.println("Cursor()");
+  }
+
+  private static class Singleton {
+    private static final Cursor INSTANCE = new Cursor();
+  }
+
+  public static Cursor getInstance() {
+    return Singleton.INSTANCE;
+  }
+
+}
 
 ----------
 
