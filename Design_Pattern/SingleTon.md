@@ -1,9 +1,9 @@
-# SingleTon
+# Singleton
 ### 오직 한개의 객체를 만들고, 언제 어디서든 동일한 방법을 통해 접근 가능한 객체
 
 -------
 
-## SingleTon은 왜 필요한가??
+## Singleton은 왜 필요한가??
 일반적으론 프로그램을 실행할 때 많은 인스턴스가 생성 된다. 예를 들면 String 클래스의 인스턴스는 문자열 1개에 대해서 1개가 생성되기 때문에 문자열 1000개가 등장하는 프로그램이라면 1000개의 인스턴스가 만들어진다. 하지만 *'클래스의 인스턴스가 단 하나만 필요'*한 경우, 즉 시스템 안에서 1개밖에 존재하는 않는 것을 프로그램으로 표현하고 싶을 때 지정한 클래스의 인스턴스가 *'절대로 1개 밖에 존재하지 않는 것'*을 보증하고 싶을때 SingleTon을 사용한다. [^1]
 
 ![패턴 구조](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Singleton_UML_class_diagram.svg/500px-Singleton_UML_class_diagram.svg.png)
