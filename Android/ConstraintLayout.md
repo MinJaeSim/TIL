@@ -1,5 +1,6 @@
-# 안드로이드 ConstraintLayout
+## 안드로이드 ConstraintLayout
 ### 위젯을 유연하게 배치하고 크기를 지정할 수 있는 ViewGroup
+
 -----
 
 ![핸들](http://kunny.github.io/assets/posts/lecture/ui/2016/05/22/constraint_layout_1/constraint_handle_both.gif)
@@ -7,9 +8,9 @@
 ConstraintLayout 내에 배치되는 위젯의 크기 및 Constraint는 세 가지의 핸들을 사용하여 조정할 수 있다.  
 위젯과 위젯, 혹은 위젯과 화면간의 관계로 Constraint를 지정하며 관계 설정은 단 방향으로만 가능하므로 상호간에 관계를 맺도록 지정할 수 없다.  
 
-## Developer Guide[^1]
+### Developer Guide
 
-## 1. Relative positioning
+#### 1. Relative positioning
 Relative positioning은 ConstraintLayout에서 레이아웃을 만드는 기본 구성 요소 중 하나로, 이러한 constraints을 통해 특정 위젯을 다른 위젯에 상대적으로 배치 가능하다. 또한 가로 축과 세로 축에 위젯을 고정 할 수 있다. **reference id로 다른 위젯 또는 부모를 가진다.**
 
 ![constraint1](https://developer.android.com/training/constraint-layout/images/parent-constraint_2x.png)  
@@ -29,7 +30,7 @@ Offset 수평 정렬 Constraint
 Baseline 정렬 Constraint
 
 
-## 2. Center Constraint[^2]
+#### 2. Center Constraint
 Center Constraint 를 사용하면 ConstraintLayout의 강력함을 잘 느낄 수 있다.
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
@@ -44,10 +45,10 @@ Center Constraint 를 사용하면 ConstraintLayout의 강력함을 잘 느낄 �
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent/>
 
-## 3. Margins
+#### 3. Margins
 측면 여백이 설정되면 해당 조건에 적용되어 대상과 면 사이 여백을 적용한다. 일반적인 레이아웃 여백 속성을 사용 할 수 있다.
 
-## 4. GONE 과 Chain [^2]
+#### 4. GONE 과 Chain
 A 위젯과 A에 constraint를 갖는 B 위젯이 있는데, A 위젯을 GONE으로 마킹하고 싶은 경우, A는 지워졌지만 방정식에서는 여전히 사용된다. A는 한 지점으로 축소돼서 슬라이드 아웃된다. A와 B 사이에 있던 여백은 A가 있을 때만 사용하고 싶은 경우가 있는데, 이와 관련된 강력한 기능으로 Chain이 있다. 양방향으로 작용하는 constraint라고 생각할 수 있는데, 두 위젯 이상의 관계에서 양방향으로 작용한다.
 
 chain의 처음에 특정 속성을 설정할 수 있다. 간단히 chain을 만들고 spread, spread inside, weighted, packed 등의 스타일을 지정해서 chain의 행동을 설정할 수 있다.[^3 
@@ -73,14 +74,14 @@ chain의 처음에 특정 속성을 설정할 수 있다. 간단히 chain을 만
 
 **중요 : MATCH_PARENT는 ConstraintLayout에 포함 된 위젯에서는 지원되지 않지만 비슷한 동작은 MATCH_CONSTRAINT를 사용하여 "left"또는 "top / bottom"제약 조건을 "parent"로 설정하여 정의 할 수 있다.**
 
-### Ratio
+#### Ratio
 위젯의 한 차원을 다른 위젯의 비율로 정의할 수도 잌ㅅ다. 이를 수행하려면 최소 하나의 제한된 크기를 0dp (예 : MATCH_CONSTRAINT)로 설정하고 layout_constraintDimentionRatio 속성을 지정된 비율로 설정해야 한다.
 
     <Button android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1" />
 
-"width : height" [^3]
+"width : height"
 
 두 치수가 모두 MATCH_CONSTRAINT (0dp)로 설정된 경우에도 비율을 사용할 수 있다. 이 경우 시스템은 모든 제약 조건을 충족시키는 가장 큰 차원을 설정하고 지정된 종횡비를 유지한다. 하나의 특정면을 다른면의 크기에 따라 제약합니다.  
 예를 들어, 하나의 차원이 두 개의 대상으로 제한되면 (예 : 너비가 0dp이고 부모를 중심으로), 어떤면이 제한되어야하는지 나타낼 수 있습니다.  
@@ -94,7 +95,7 @@ chain의 처음에 특정 속성을 설정할 수 있다. 간단히 chain을 만
 
 16 : 9 비율에 따라 버튼의 높이를 설정하고 버튼의 너비는 부모에 대한 Constraint 일치합니다.
 
-###  툴바 내 기능[^4]
+###  툴바 내 기능
 
 #### 1. 레이아웃 Blueprint 표시
 ![icon1](http://kunny.github.io/assets/posts/lecture/ui/2016/05/22/constraint_layout_1/show_blueprint.png)
@@ -118,10 +119,12 @@ Autoconnect 기능을 사용하면, 레이아웃 내 위젯을 배치할 때 자
 
 -----
 
-[^1]: https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
+참고:
 
-[^2]: https://news.realm.io/kr/news/constraintlayout-it-can-do-what-now/
+https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
 
-[^3]: https://developer.android.com/training/constraint-layout/index.html
+https://news.realm.io/kr/news/constraintlayout-it-can-do-what-now/
 
-[^4]: http://kunny.github.io/lecture/ui/2016/05/22/constraint_layout_1/
+https://developer.android.com/training/constraint-layout/index.html
+
+http://kunny.github.io/lecture/ui/2016/05/22/constraint_layout_1/
